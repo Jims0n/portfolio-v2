@@ -2,22 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  --color-accent: #60a5fa;
 }
 
 @layer base {
   body {
-    font-family: Arial, Helvetica, sans-serif;
-    @apply bg-black text-white leading-loose
+    font-family: var(--font-geist-sans);
+    @apply bg-[#121212] text-white leading-relaxed;
   }
+  
+  a {
+    @apply transition-colors duration-300;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
   .h1 {
-    @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold
+    @apply text-4xl xl:text-5xl font-bold;
+  }
+  
+  .h2 {
+    @apply text-3xl xl:text-4xl font-bold;
+  }
+  
+  .h3 {
+    @apply text-2xl xl:text-3xl font-semibold;
+  }
+  
+  .text-accent {
+    color: var(--color-accent);
+  }
+  
+  .bg-accent {
+    background-color: var(--color-accent);
+  }
+  
+  .border-accent {
+    border-color: var(--color-accent);
+  }
+  
+  .hover\:text-accent:hover {
+    color: var(--color-accent);
+  }
+  
+  .hover\:bg-accent:hover {
+    background-color: var(--color-accent);
+  }
+  
+  .hover\:border-accent:hover {
+    border-color: var(--color-accent);
+  }
+  
+  .focus\:ring-accent:focus {
+    --tw-ring-color: var(--color-accent);
+  }
+  
+  /* Project logo animation */
+  .project-logo {
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .project-card:hover .project-logo {
+    transform: scale(1.05);
+  }
 }
-.h2 {
-    @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
 }
-.h3 {
-    @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold
+
+::-webkit-scrollbar-track {
+  @apply bg-[#1A1A1A];
 }
+
+::-webkit-scrollbar-thumb {
+  @apply bg-[#333333] rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-[#444444];
 }

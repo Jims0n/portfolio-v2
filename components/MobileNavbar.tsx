@@ -2,7 +2,10 @@
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { CiMenuFries } from "react-icons/ci";
+import { FiMenu, FiX } from "react-icons/fi";
+import { Button } from "./ui/button";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
     {
@@ -10,12 +13,12 @@ const links = [
         path: "/"
     },
     {
-        name: "work",
-        path: "/work"
+        name: "about",
+        path: "/about"
     },
     {
-        name: "services",
-        path: "/services"
+        name: "works",
+        path: "/works"
     },
     {
         name: "contact",
@@ -25,32 +28,71 @@ const links = [
 
 const MobileNavbar = () => {
     const pathname = usePathname();
-  return (
-    <Sheet>
-        <SheetTrigger className="flex justify-center items-center">
-            <CiMenuFries className="text-[32px] text-accent" />
-        </SheetTrigger>
-        <SheetContent>
-            {/* logo */}
-            <div className="mt-32 mb-40 text-center text-2xl">Ji</div>
-            {/* nav */}
-            <nav className="flex flex-col justify-center items-center gap-8">
-                {links.map((link, index) => {
-                    return (
-                        <Link 
-                        href={link.path}
-                        key={index}
-                        className={`${link.path === pathname && "text-accent border-b-2 border-accent"}
-                         text-xl capitalize hover:text-accent transition-all`}
-                        >
-                        {link.name}
-                        </Link>
-                    )
-                })}
-            </nav>
-        </SheetContent>
-    </Sheet>
-  )
-}
+    const [isOpen, setIsOpen] = useState(false);
 
-export default MobileNavbar
+    return (
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+                <Button variant="ghost" size="default" className="w-10 h-10 rounded-full p-0">
+                    <FiMenu className="text-2xl" />
+                </Button>
+            </SheetTrigger>
+            <SheetContent className="bg-[#121212] border-l border-white/10 p-0">
+                <div className="flex flex-col h-full">
+                    {/* Close button */}
+                    <div className="flex justify-end p-4">
+                        <Button variant="ghost" size="default" className="w-10 h-10 rounded-full p-0" onClick={() => setIsOpen(false)}>
+                            <FiX className="text-2xl" />
+                        </Button>
+                    </div>
+                    
+                    {/* logo */}
+                    <div className="mt-8 mb-16 text-center">
+                        <h2 className="text-3xl font-bold">
+                            Jimson<span className="text-accent">.</span>
+                        </h2>
+                    </div>
+                    
+                    {/* nav */}
+                    <nav className="flex flex-col items-center gap-8">
+                        <AnimatePresence>
+                            {links.map((link, index) => {
+                                return (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: index * 0.1 }}
+                                    >
+                                        <Link 
+                                            href={link.path}
+                                            className={`${
+                                                link.path === pathname 
+                                                ? "text-accent" 
+                                                : "text-white"
+                                            } text-2xl capitalize hover:text-accent transition-all`}
+                                            onClick={() => setIsOpen(false)}
+                                        >
+                                            {link.name}
+                                        </Link>
+                                    </motion.div>
+                                );
+                            })}
+                        </AnimatePresence>
+                    </nav>
+                    
+                    {/* contact button */}
+                    <div className="mt-auto mb-8 text-center">
+                        {pathname !== "/contact" && (
+                            <Link href="/contact" onClick={() => setIsOpen(false)}>
+                                <Button className="rounded-full px-8">Hire Me</Button>
+                            </Link>
+                        )}
+                    </div>
+                </div>
+            </SheetContent>
+        </Sheet>
+    );
+};
+
+export default MobileNavbar;
