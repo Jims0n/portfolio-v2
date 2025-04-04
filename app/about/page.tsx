@@ -57,13 +57,13 @@ export default function About() {
           <h2 className="text-3xl font-bold mb-6">My Journey</h2>
           <div className="space-y-4 text-white/70">
             <p>
-              Hello! I&apos;m Abdulateef Jimson, a software developer with a passion for creating
+              Hello! I&apos;m Abdulateef, a software developer with a passion for creating
               innovative and user-friendly web applications. My journey in tech started with curiosity
               about how websites work, which led me to dive deep into web development.
             </p>
             <p>
               I specialize in building full-stack web applications using modern JavaScript frameworks
-              like React and Next.js, along with backend technologies such as Node.js and MongoDB.
+              like React and Next.js, along with backend technologies such as Node.js and PostgreSQL.
               I&apos;m passionate about clean code, responsive design, and creating intuitive user experiences.
             </p>
             <p>
@@ -86,7 +86,7 @@ export default function About() {
             <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-purple-500/20" />
             <Image
               src="/assets/cg.png"
-              alt="Abdulateef Jimson"
+              alt=""
               fill
               className="object-cover"
             />

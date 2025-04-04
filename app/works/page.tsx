@@ -81,7 +81,7 @@ const Works = () => {
 
   return (
     <div className="container mx-auto px-4 py-16">
-      <motion.div
+    <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -132,11 +132,11 @@ const Works = () => {
                       fill
                       className="object-contain"
                     />
-                  </div>
+                                                </div>
                 )}
-              </div>
-            </div>
-            
+                        </div>
+                </div>
+
             <div className="p-6">
               <h3 className="text-2xl font-bold mb-2">{project.name}</h3>
               <p className="text-white/70 mb-4">{project.description}</p>
@@ -150,8 +150,8 @@ const Works = () => {
                     {tech}
                   </span>
                 ))}
-              </div>
-              
+        </div>
+
               <div className="flex gap-4">
                 <Link 
                   href={project.liveLink} 
@@ -176,7 +176,7 @@ const Works = () => {
             </div>
           </motion.div>
         ))}
-      </motion.div>
+    </motion.div>
     </div>
   );
 };

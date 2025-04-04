@@ -16,7 +16,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Jimson | Software Developer",
-  description: "Portfolio website of Abdulateef Jimson, a Software Developer specializing in web development.",
+  description: "Portfolio website of Abdulateef, a Software Developer specializing in web development.",
 };
 
 export default function RootLayout({
@@ -35,7 +35,7 @@ export default function RootLayout({
         </main>
         <footer className="py-6 text-center text-white/60 text-sm">
           <div className="container mx-auto">
-            © {new Date().getFullYear()} Abdulateef Jimson. All rights reserved.
+            © {new Date().getFullYear()} Abdulateef. All rights reserved.
           </div>
         </footer>
       </body>
