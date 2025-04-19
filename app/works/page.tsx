@@ -9,6 +9,18 @@ import { FiExternalLink, FiGithub, FiCode } from "react-icons/fi";
 const projects = [
   {
     id: 1,
+    name: "Drift Subaccounts",
+    description: "A Solana-based tool for managing Drift Protocol subaccounts with wallet integration and position tracking. Built for the Drift ecosystem to help users manage their on-chain positions.",
+    color: "blockchain-gradient",
+    logo: "/assets/drift.svg",
+    logoType: "image",
+    technologies: ["Next.js", "React", "Solana", "Blockchain", "Web3"],
+    liveLink: "https://drift-subaccounts.vercel.app/",
+    githubLink: "https://github.com/Jims0n/drift-subaccounts",
+    featured: true,
+  },
+  {
+    id: 2,
     name: "SnipX",
     description: "A code snippet sharing platform for developers to share and discover useful code snippets.",
     color: "from-blue-500/30 to-cyan-500/30",
@@ -20,7 +32,7 @@ const projects = [
     featured: true,
   },
   {
-    id: 2,
+    id: 3,
     name: "Daggers",
     description: "Premium Nigerian streetwear e-commerce platform with modern design and seamless shopping experience.",
     color: "from-pink-500/30 to-purple-500/30",
@@ -32,7 +44,7 @@ const projects = [
     featured: true,
   },
   {
-    id: 3,
+    id: 4,
     name: "ProStore",
     description: "A full-featured e-commerce platform with product catalog, cart functionality, and checkout process.",
     color: "from-amber-500/30 to-red-500/30",
@@ -44,9 +56,9 @@ const projects = [
     featured: true,
   },
   {
-    id: 4,
+    id: 5,
     name: "Podium",
-    description: "A platform for event management and ticketing with user authentication and payment processing.",
+    description: "An onchain mini league F1 prediction platform",
     color: "from-green-500/30 to-teal-500/30",
     logo: "/assets/podium.png",
     logoType: "image",
@@ -112,7 +124,7 @@ const Works = () => {
               {/* Display project logo */}
               <div className="absolute inset-0 flex items-center justify-center p-8">
                 {project.logoType === "text" ? (
-                  // For text-based logos (SnipX)
+                  // For text-based logos 
                   <div className="project-logo text-center">
                     <div className="bg-white/20 p-4 rounded-lg inline-flex items-center mb-2">
                       <FiCode className="text-white text-3xl mr-2" />
@@ -132,7 +144,7 @@ const Works = () => {
                       fill
                       className="object-contain"
                     />
-                                                </div>
+                       </div>
                 )}
                         </div>
                 </div>

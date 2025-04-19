@@ -69,6 +69,18 @@
   
   .project-card:hover .project-logo {
     transform: scale(1.05);
+    filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.3));
+  }
+  
+  /* SVG logo enhancement */
+  .project-logo img {
+    object-fit: contain !important;
+    mix-blend-mode: normal;
+  }
+  
+  /* Custom gradient for blockchain projects */
+  .blockchain-gradient {
+    background: linear-gradient(135deg, rgba(111, 63, 251, 0.3), rgba(70, 120, 246, 0.3), rgba(79, 209, 197, 0.3));
   }
 }
 
