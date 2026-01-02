@@ -1,30 +1,13 @@
 "use client";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "./ui/sheet";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu } from "react-icons/fi";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const links = [
-    {
-        name: "home",
-        path: "/"
-    },
-    {
-        name: "about",
-        path: "/about"
-    },
-    {
-        name: "works",
-        path: "/works"
-    },
-    {
-        name: "contact",
-        path: "/contact"
-    },
-];
+import { navLinks } from "@/lib/navigation";
 
 const MobileNavbar = () => {
     const pathname = usePathname();
@@ -33,30 +16,36 @@ const MobileNavbar = () => {
     return (
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-                <Button variant="ghost" size="default" className="w-10 h-10 rounded-full p-0">
-                    <FiMenu className="text-2xl" />
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="rounded-full"
+                    aria-label="Open navigation menu"
+                >
+                    <FiMenu className="text-2xl" aria-hidden="true" />
                 </Button>
             </SheetTrigger>
-            <SheetContent className="bg-[#121212] border-l border-white/10 p-0">
-                <div className="flex flex-col h-full">
-                    {/* Close button */}
-                    <div className="flex justify-end p-4">
-                        <Button variant="ghost" size="default" className="w-10 h-10 rounded-full p-0" onClick={() => setIsOpen(false)}>
-                            <FiX className="text-2xl" />
-                        </Button>
-                    </div>
-                    
+            <SheetContent
+                className="bg-primary border-l border-white/10 p-0"
+                aria-describedby={undefined}
+            >
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                <div className="flex flex-col h-full pt-12">
                     {/* logo */}
-                    <div className="mt-8 mb-16 text-center">
+                    <div className="mb-16 text-center">
                         <h2 className="text-3xl font-bold">
                             Jimson<span className="text-accent">.</span>
                         </h2>
                     </div>
-                    
+
                     {/* nav */}
-                    <nav className="flex flex-col items-center gap-8">
+                    <nav
+                        className="flex flex-col items-center gap-8"
+                        aria-label="Mobile navigation"
+                    >
                         <AnimatePresence>
-                            {links.map((link, index) => {
+                            {navLinks.map((link, index) => {
+                                const isActive = link.path === pathname;
                                 return (
                                     <motion.div
                                         key={index}
@@ -64,14 +53,12 @@ const MobileNavbar = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: index * 0.1 }}
                                     >
-                                        <Link 
+                                        <Link
                                             href={link.path}
-                                            className={`${
-                                                link.path === pathname 
-                                                ? "text-accent" 
-                                                : "text-white"
-                                            } text-2xl capitalize hover:text-accent transition-all`}
+                                            className={`${isActive ? "text-accent" : "text-white"
+                                                } text-2xl capitalize hover:text-accent transition-all`}
                                             onClick={() => setIsOpen(false)}
+                                            aria-current={isActive ? "page" : undefined}
                                         >
                                             {link.name}
                                         </Link>
@@ -80,7 +67,7 @@ const MobileNavbar = () => {
                             })}
                         </AnimatePresence>
                     </nav>
-                    
+
                     {/* contact button */}
                     <div className="mt-auto mb-8 text-center">
                         {pathname !== "/contact" && (

@@ -2,22 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-accent: #60a5fa;
-}
-
 @layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     font-family: var(--font-geist-sans);
-    @apply bg-[#121212] text-white leading-relaxed;
+    @apply bg-primary text-white leading-relaxed;
   }
-  
+
+  /* Improved focus states for accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-primary;
+  }
+
   a {
     @apply transition-colors duration-300;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold tracking-tight;
+  }
+
+  /* Selection styling */
+  ::selection {
+    @apply bg-accent/30 text-white;
   }
 }
 
@@ -25,62 +44,75 @@
   .h1 {
     @apply text-4xl xl:text-5xl font-bold;
   }
-  
+
   .h2 {
     @apply text-3xl xl:text-4xl font-bold;
   }
-  
+
   .h3 {
     @apply text-2xl xl:text-3xl font-semibold;
   }
-  
-  .text-accent {
-    color: var(--color-accent);
-  }
-  
-  .bg-accent {
-    background-color: var(--color-accent);
-  }
-  
-  .border-accent {
-    border-color: var(--color-accent);
-  }
-  
-  .hover\:text-accent:hover {
-    color: var(--color-accent);
-  }
-  
-  .hover\:bg-accent:hover {
-    background-color: var(--color-accent);
-  }
-  
-  .hover\:border-accent:hover {
-    border-color: var(--color-accent);
-  }
-  
-  .focus\:ring-accent:focus {
-    --tw-ring-color: var(--color-accent);
-  }
-  
+
   /* Project logo animation */
   .project-logo {
     transition: transform 0.5s ease-in-out;
   }
-  
+
   .project-card:hover .project-logo {
     transform: scale(1.05);
-    filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.3));
+    filter: drop-shadow(0 0 8px rgba(0, 255, 153, 0.3));
   }
-  
+
   /* SVG logo enhancement */
   .project-logo img {
     object-fit: contain !important;
     mix-blend-mode: normal;
   }
-  
+
   /* Custom gradient for blockchain projects */
   .blockchain-gradient {
-    background: linear-gradient(135deg, rgba(111, 63, 251, 0.3), rgba(70, 120, 246, 0.3), rgba(79, 209, 197, 0.3));
+    background: linear-gradient(
+      135deg,
+      rgba(111, 63, 251, 0.3),
+      rgba(70, 120, 246, 0.3),
+      rgba(79, 209, 197, 0.3)
+    );
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300 hover:border-accent/40 hover:-translate-y-1;
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply backdrop-blur-lg bg-primary/80 border border-white/10;
+  }
+}
+
+@layer utilities {
+  /* Screen reader only utility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
   }
 }
 
@@ -99,4 +131,16 @@
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-[#444444];
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
