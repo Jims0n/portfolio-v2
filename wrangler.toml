@@ -3,4 +3,4 @@ compatibility_date = "2026-02-16"
 compatibility_flags = ["nodejs_compat"]
 
 [site]
-bucket = "./out"
+bucket = "./.vercel/output/static"
