@@ -80,7 +80,7 @@ const projects = [
         logoType: "image",
         logo: "/assets/trackwise.png",
         technologies: ["Next.js", "React", "Tailwind CSS", "PostgreSQL"],
-        liveLink: "https://trackwise-kappa.vercel.app/",
+        liveLink: "https://trackwise-7xq9.onrender.com/",
         githubLink: "https://github.com/Jims0n/trackwise",
         featured: true,
     },
